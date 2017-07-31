@@ -17,7 +17,6 @@ use TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager;
  */
 class TextTest extends InputTest
 {
-
     /**
      * @var array
      */
@@ -45,41 +44,5 @@ class TextTest extends InputTest
         $chained = $instance->setEnableRichText(true);
         $this->assertSame($instance, $chained);
         $this->assertTrue($instance->getEnableRichText());
-    }
-
-    /**
-     * @test
-     */
-    public function canChainSetterForDefaultExtras()
-    {
-        /** @var Text $instance */
-        $instance = $this->createInstance();
-        $chained = $instance->setDefaultExtras('void');
-        $this->assertSame($instance, $chained);
-        $this->assertSame('void', $instance->getDefaultExtras());
-    }
-
-    /**
-     * @test
-     */
-    public function canBuildConfigurationWithoutDefaultExtrasWithEnableRichText()
-    {
-        /** @var Text $instance */
-        $instance = $this->createInstance();
-        $instance->setDefaultExtras(null)->setEnableRichText(true);
-        $result = $this->performTestBuild($instance);
-        $this->assertArrayHasKey('defaultExtras', $result['config']);
-    }
-
-    /**
-     * @test
-     */
-    public function canBuildConfigurationWithDefaultExtras()
-    {
-        /** @var Text $instance */
-        $instance = $this->createInstance();
-        $instance->setDefaultExtras('richtext[*]');
-        $result = $this->performTestBuild($instance);
-        $this->assertNotEmpty($result['defaultExtras']);
     }
 }
